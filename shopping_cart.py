@@ -1,3 +1,17 @@
+import os
+import dotenv
+import time
+from datetime import date
+
+dotenv.load_dotenv()
+
+store_name = "PLACEHOLDER HERE"
+website = f"www.{store_name}.com"
+today = date.today()
+current_time = time.localtime()
+t = time.strftime("%H:%M:%S", current_time)
+
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -34,4 +48,10 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-print(products)
+# print(products)
+
+print("----------------------------")
+print(f"WELCOME TO {store_name}!")
+print(website)
+print(f"CHECKOUT AT: {today} {t}")
+print("----------------------------")
