@@ -5,12 +5,16 @@ from datetime import date
 
 dotenv.load_dotenv()
 
+# Store and receipt information.
 store_name = "PLACEHOLDER HERE"
 website = f"www.{store_name}.com"
 today = date.today()
 current_time = time.localtime()
 t = time.strftime("%H:%M:%S", current_time)
 
+# Empty lists for storing groceries and prices from inputs.
+grocery_list = []
+price_list = []
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -49,6 +53,21 @@ def to_usd(my_price):
     return f"${my_price:,.2f}" #> $12,000.71
 
 # print(products)
+
+# Input process for groceries.
+while True:
+    item = input("ENTER ITEM ID:")
+    index = int(item) - 1
+    price = to_usd(float(products[index]["price"]))
+    product = products[index]["name"]
+    print(f"... {product} ({price})")
+    # if item not in products[item]["id"]:
+        # print ("ERROR: INVALID ITEM")
+    # if item.upper == "DONE":
+        # break
+    # else:
+
+
 
 print("----------------------------")
 print(f"WELCOME TO {store_name}!")
