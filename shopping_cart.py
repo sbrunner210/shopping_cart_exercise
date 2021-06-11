@@ -6,8 +6,8 @@ from datetime import date
 dotenv.load_dotenv()
 
 # Store and receipt information.
-store_name = "PLACEHOLDER HERE"
-website = f"www.{store_name}.com"
+store_name = "TRADER SHANE'S"
+website = f"www.tradershanes.com"
 today = date.today()
 current_time = time.localtime()
 t = time.strftime("%H:%M:%S", current_time)
@@ -93,11 +93,11 @@ for grocery in grocery_list:
 
 print("----------------------------")
 subtotal = (sum(price_list))
-print("SUBTOTAL: ", subtotal, to_usd(subtotal))
+print("SUBTOTAL: ", to_usd(subtotal))
 tax = (subtotal * tax_rate)
-print("TAX: ", tax, to_usd(tax))
+print("TAX: ", to_usd(tax))
 total = (tax + subtotal)
-print("TOTAL: ", total, to_usd(total))
+print("TOTAL: ", to_usd(total))
 print("----------------------------")
 print("THANK YOU! SEE YOU AGAIN SOON!")
 print("----------------------------")
