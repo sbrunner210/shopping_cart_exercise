@@ -64,18 +64,20 @@ while True:
         item = (input("ENTER ITEM ID:")).strip()
         # First, checking to see if the cashier is done inputting to break the loop
         if item.upper() == "DONE":
-            break
-        # Sorts the product IDs into a list to check for an error in the input
-        elif int(item) not in [p["id"] for p in products]:   
-            print("INVALID ENTRY. TRY AGAIN.")            
+            break       
         # Appends the products and prices into their respective lists.
         else:
-            matching_id = [p for p in products if str(p["id"]) == str(item)]
-            product = matching_id[0]["name"]
-            grocery_list.append(product)
-            item_price = to_usd(matching_id[0]["price"])
-            price_list.append(matching_id[0]["price"])
-            print(f"... {product} ({item_price})")
+            try:
+                matching_id = [p for p in products if str(p["id"]) == str(item)]
+                product = matching_id[0]["name"]
+                grocery_list.append(product)
+                item_price = to_usd(matching_id[0]["price"])
+                price_list.append(matching_id[0]["price"])
+                print(f"... {product} ({item_price})")
+            except IndexError or ValueError:
+                print("INVALID ENTRY. TRY AGAIN.")            
+
+
 
 
 
