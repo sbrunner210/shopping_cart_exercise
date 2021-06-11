@@ -2,6 +2,8 @@ import os
 import dotenv
 import time
 from datetime import date
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 dotenv.load_dotenv()
 
@@ -57,6 +59,7 @@ def to_usd(my_price):
     return f"${my_price:,.2f}" #> $12,000.71
 
 # Input process for groceries.
+# Code adapted from Professor Rossetti's video walkthrough.
 while True:
         item = (input("ENTER ITEM ID:")).strip()
         # First, checking to see if the cashier is done inputting to break the loop
@@ -101,3 +104,14 @@ print("TOTAL: ", to_usd(total))
 print("----------------------------")
 print("THANK YOU! SEE YOU AGAIN SOON!")
 print("----------------------------")
+
+# Sendgrid API request
+SENDGRID_API_KEY = os.getenv("SENDGRID_API", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+SENDER_ADDRESS = os.getenv("SENDGRID_EMAIL", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+
+client = SendGridAPIClient(SENDGRID_API_KEY)
+
+subject = (f"Your receipt from {store_name}.")
+
+print(SENDER_ADDRESS)
+print(SENDGRID_API_KEY)
