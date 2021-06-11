@@ -96,22 +96,29 @@ subtotal = (sum(price_list))
 print("SUBTOTAL: ", to_usd(subtotal))
 tax = (subtotal * tax_rate)
 print("TAX: ", to_usd(tax))
-total = (tax + subtotal)
-print("TOTAL: ", to_usd(total))
+total = to_usd((tax + subtotal))
+print("TOTAL: ", total)
 print("----------------------------")
 print("THANK YOU! SEE YOU AGAIN SOON!")
 print("----------------------------")
 
 email_request = (input("Would you like to receive an e-mail receipt? [y/n]")).strip()
 if email_request.lower() == "y":
+    customer = input("Please enter your e-mail address:")
     # Sendgrid API request
+    # Adapted from Professor Rossetti's guide on GitHub.
     SENDGRID_API_KEY = os.getenv("SENDGRID_API", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
     SENDER_ADDRESS = os.getenv("SENDGRID_EMAIL", default="OOPS, please set env var called 'SENDER_ADDRESS'")
 
     client = SendGridAPIClient(SENDGRID_API_KEY)
 
     subject = (f"Your receipt from {store_name}.")
-    print("ACCEPTED INPUT")
 
-print(SENDER_ADDRESS)
-print(SENDGRID_API_KEY)
+    body = (f"On {today} at {t}, your purchase from {store_name} came to a total of {total}.")
+
+    message = Mail(from_email=SENDER_ADDRESS, to_emails=customer, subject=subject, html_content=body)
+    print(customer)
+    print("Thank you!")
+
+# print(SENDER_ADDRESS)
+# print(SENDGRID_API_KEY)
