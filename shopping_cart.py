@@ -77,11 +77,6 @@ while True:
             except IndexError or ValueError:
                 print("INVALID ENTRY. TRY AGAIN.")            
 
-
-
-
-
-
 print("----------------------------")
 print(f"WELCOME TO {store_name}!")
 print(website)
@@ -107,13 +102,16 @@ print("----------------------------")
 print("THANK YOU! SEE YOU AGAIN SOON!")
 print("----------------------------")
 
-# Sendgrid API request
-SENDGRID_API_KEY = os.getenv("SENDGRID_API", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
-SENDER_ADDRESS = os.getenv("SENDGRID_EMAIL", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+email_request = (input("Would you like to receive an e-mail receipt? [y/n]")).strip()
+if email_request.lower() == "y":
+    # Sendgrid API request
+    SENDGRID_API_KEY = os.getenv("SENDGRID_API", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+    SENDER_ADDRESS = os.getenv("SENDGRID_EMAIL", default="OOPS, please set env var called 'SENDER_ADDRESS'")
 
-client = SendGridAPIClient(SENDGRID_API_KEY)
+    client = SendGridAPIClient(SENDGRID_API_KEY)
 
-subject = (f"Your receipt from {store_name}.")
+    subject = (f"Your receipt from {store_name}.")
+    print("ACCEPTED INPUT")
 
-print(SENDER_ADDRESS)
-print(SENDGRID_API_KEY)
+# print(SENDER_ADDRESS)
+# print(SENDGRID_API_KEY)
