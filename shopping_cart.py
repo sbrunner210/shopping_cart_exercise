@@ -11,7 +11,10 @@ website = f"www.{store_name}.com"
 today = date.today()
 current_time = time.localtime()
 t = time.strftime("%H:%M:%S", current_time)
-tax_rate = 0.08
+
+# This is calling the .env file to get the tax rate and converting it into a float so it can be multiplied with the subtotal.
+tax_rate = float(os.getenv("TAX_RATE"))
+
 
 # Empty lists for storing groceries and prices from inputs.
 grocery_list = []
@@ -97,3 +100,4 @@ total = (tax + subtotal)
 print("TOTAL: ", total, to_usd(total))
 print("----------------------------")
 print("THANK YOU! SEE YOU AGAIN SOON!")
+print("----------------------------")
