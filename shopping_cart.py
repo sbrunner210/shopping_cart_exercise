@@ -113,5 +113,5 @@ if email_request.lower() == "y":
     subject = (f"Your receipt from {store_name}.")
     print("ACCEPTED INPUT")
 
-# print(SENDER_ADDRESS)
-# print(SENDGRID_API_KEY)
+print(SENDER_ADDRESS)
+print(SENDGRID_API_KEY)
