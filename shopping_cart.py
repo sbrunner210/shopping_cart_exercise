@@ -52,20 +52,21 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-# print(products)
-
 # Input process for groceries.
 while True:
-        item = input("ENTER ITEM ID:")
+        item = (input("ENTER ITEM ID:")).strip()
         if item.upper() == "DONE":
             break
-        else:   
+        elif int(item) not in [p["id"] for p in products]:   
+            print("INVALID ENTRY. TRY AGAIN.")            
+        else:
             shopping_cart = [p for p in products if str(p["id"]) == str(item)]
             price = to_usd(float(shopping_cart[0]["price"]))
             product = shopping_cart[0]["name"]
             print(f"... {product} ({price})")
-    # if item not in products[item]["id"]:
-        # print ("ERROR: INVALID ITEM")
+
+
+
 
 
 
