@@ -56,16 +56,17 @@ def to_usd(my_price):
 
 # Input process for groceries.
 while True:
-    item = input("ENTER ITEM ID:")
-    index = int(item) - 1
-    price = to_usd(float(products[index]["price"]))
-    product = products[index]["name"]
-    print(f"... {product} ({price})")
+        item = input("ENTER ITEM ID:")
+        if item.upper() == "DONE":
+            break
+        else:   
+            shopping_cart = [p for p in products if str(p["id"]) == str(item)]
+            price = to_usd(float(shopping_cart[0]["price"]))
+            product = shopping_cart[0]["name"]
+            print(f"... {product} ({price})")
     # if item not in products[item]["id"]:
         # print ("ERROR: INVALID ITEM")
-    # if item.upper == "DONE":
-        # break
-    # else:
+
 
 
 
