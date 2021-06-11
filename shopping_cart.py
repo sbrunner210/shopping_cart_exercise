@@ -55,16 +55,29 @@ def to_usd(my_price):
 # Input process for groceries.
 while True:
         item = (input("ENTER ITEM ID:")).strip()
+        # First, checking to see if the cashier is done inputting to break the loop
         if item.upper() == "DONE":
             break
+        # Sorts the product IDs into a list to check for an error in the input
         elif int(item) not in [p["id"] for p in products]:   
             print("INVALID ENTRY. TRY AGAIN.")            
+        # Appends the products and prices into their respective lists.
         else:
-            shopping_cart = [p for p in products if str(p["id"]) == str(item)]
-            price = to_usd(float(shopping_cart[0]["price"]))
-            product = shopping_cart[0]["name"]
-            print(f"... {product} ({price})")
+            matching_id = [p for p in products if str(p["id"]) == str(item)]
+            product = matching_id[0]["name"]
+            grocery_list.append(product)
+            item_price = to_usd(matching_id[0]["price"])
+            price_list.append(matching_id[0]["price"])
+            print(f"... {product} ({item_price})")
 
+for grocery in grocery_list:
+    index = grocery_list.index(grocery)
+    register_price = to_usd(price_list[index])
+    print(f"... {grocery} {register_price}")
+
+
+# print(grocery_list)
+# print(price_list)
 
 
 
