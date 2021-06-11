@@ -117,7 +117,18 @@ if email_request.lower() == "y":
     body = (f"On {today} at {t}, your purchase from {store_name} came to a total of {total}.")
 
     message = Mail(from_email=SENDER_ADDRESS, to_emails=customer, subject=subject, html_content=body)
-    print(customer)
+    
+    # Adapted from Professor Rossetti's guide on GitHub.    
+    try:
+        response = client.send(message)
+        print("RESPONSE:", type(response))
+        print(response.status_code) 
+        print(response.body)
+        print(response.headers)
+    except Exception as err:
+        print(type(err))
+        print(err)
+
     print("Thank you!")
 
 # print(SENDER_ADDRESS)
