@@ -11,6 +11,7 @@ website = f"www.{store_name}.com"
 today = date.today()
 current_time = time.localtime()
 t = time.strftime("%H:%M:%S", current_time)
+tax_rate = 0.08
 
 # Empty lists for storing groceries and prices from inputs.
 grocery_list = []
@@ -70,22 +71,29 @@ while True:
             price_list.append(matching_id[0]["price"])
             print(f"... {product} ({item_price})")
 
-for grocery in grocery_list:
-    index = grocery_list.index(grocery)
-    register_price = to_usd(price_list[index])
-    print(f"... {grocery} {register_price}")
-
-
-# print(grocery_list)
-# print(price_list)
-
-
-
 
 
 
 print("----------------------------")
 print(f"WELCOME TO {store_name}!")
 print(website)
+print("----------------------------")
 print(f"CHECKOUT AT: {today} {t}")
 print("----------------------------")
+print("SELECTED PRODUCTS:")
+
+# Loops through the grocery list and prints the items line by line.
+for grocery in grocery_list:
+    index = grocery_list.index(grocery)
+    register_price = to_usd(price_list[index])
+    print(f"... {grocery} {register_price}")
+
+print("----------------------------")
+subtotal = (sum(price_list))
+print("SUBTOTAL: ", subtotal, to_usd(subtotal))
+tax = (subtotal * tax_rate)
+print("TAX: ", tax, to_usd(tax))
+total = (tax + subtotal)
+print("TOTAL: ", total, to_usd(total))
+print("----------------------------")
+print("THANK YOU! SEE YOU AGAIN SOON!")
