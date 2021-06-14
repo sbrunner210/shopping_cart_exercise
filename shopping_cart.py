@@ -121,15 +121,16 @@ if email_request.lower() == "y":
     # Adapted from Professor Rossetti's guide on GitHub.    
     try:
         response = client.send(message)
-        print("RESPONSE:", type(response))
-        print(response.status_code) 
-        print(response.body)
-        print(response.headers)
+        # print("RESPONSE:", type(response))
+        if (response.status_code) == 202:
+            print("E-MAIL SENT. THANK YOU FOR SHOPPING AT TRADER SHANE'S!") 
+        # print(response.body)
+        # print(response.headers)
     except Exception as err:
         print(type(err))
         print(err)
 
-    print("Thank you!")
+    print("HAVE A NICE DAY!")
 
 # print(SENDER_ADDRESS)
 # print(SENDGRID_API_KEY)
